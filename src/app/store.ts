@@ -1,7 +1,7 @@
-import { IPet } from './pet';
+import { Pet } from './models/pet';
 
 export interface IAppState {
-  pets: IPet[];
+  pets: Pet[];
   lastUpdate: Date;
 }
 

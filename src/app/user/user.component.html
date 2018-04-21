@@ -1,0 +1,7 @@
+<ul class="pets">
+  <li *ngFor="let pet of pets">
+    <a routerLink="/pets/{{pet._id}}">
+      <h1>{{pet.name}}</h1>
+    </a>
+  </li>
+</ul>

@@ -1,0 +1,21 @@
+<div *ngIf="pet">
+  <h2>Detalles de {{ pet.name | uppercase }}</h2>
+  <div>
+    <p>
+      {{pet.breed}}
+    </p>
+    <p>
+      {{pet.age}} años
+    </p>
+    <p>
+      {{pet.weight}} Kg
+    </p>
+    <p>
+      {{pet.size}}
+    </p>
+    <p>
+      {{pet.location}}
+    </p>
+  </div>
+  <button (click)="goBack()">go back</button>
+</div>

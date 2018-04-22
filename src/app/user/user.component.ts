@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { PetService } from '../pet.service';
-import { Pet } from '../models/pet';
+import { Pet } from '../models/pet.model';
 
 @Component({
   selector: 'app-user',

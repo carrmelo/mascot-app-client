@@ -1,4 +1,4 @@
-import { Pet } from './models/pet';
+import { Pet } from './models/pet.model';
 
 export interface IAppState {
   pets: Pet[];

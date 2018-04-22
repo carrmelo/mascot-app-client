@@ -1,1 +1,12 @@
-<app-new-pet></app-new-pet>
+<ul class="orgs">
+  <li *ngFor="let org of orgs">
+    <a routerLink="/orgs/{{org._id}}">
+      <h1>{{org.name}}</h1>
+    </a>
+  </li>
+</ul>
+
+
+
+
+<!-- <app-new-pet></app-new-pet> -->

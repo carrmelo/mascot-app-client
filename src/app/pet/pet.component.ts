@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 
 import { PetService } from '../pet.service';
-import { Pet } from '../models/pet'
+import { Pet } from '../models/pet.model'
 
 @Component({
   selector: 'app-pet',

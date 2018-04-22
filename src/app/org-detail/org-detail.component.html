@@ -1,0 +1,16 @@
+<div *ngIf="org">
+  <h2>Detalles de {{ org.name | uppercase }}</h2>
+  <div>
+    <p>
+      {{org.location}}
+    </p>
+    <p>
+      {{org.web}}
+    </p>
+    <p>
+      {{org.email}}
+    </p>
+  </div>
+  <button routerLink="/orgs/{{org._id}}/pets">Nueva Mascota</button>
+  <button (click)="goBack()">Atras</button>
+</div>

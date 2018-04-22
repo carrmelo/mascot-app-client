@@ -1,35 +1,45 @@
-<div>
-  <form>
-    <label> Especie:
-      <select>
-        <option value="dog">Perro</option>
-        <option value="cat">Gato</option>
-      </select>    
-    </label>
-    <label> Raza:
-        <input #petBreed />    
-    </label>
-    <label> Nombre:
-      <input #petName />    
-    </label>
-    <label> Edad:
-      <input #petAge />    
-    </label>
-    <label> Peso:
-      <input #petWeight />    
-    </label>
-    <label> Tamaño:
-      <select>
-        <option value="xs">Toy</option>
-        <option value="s">Pequeño</option>
-        <option value="m">Medio</option>
-        <option value="l">Grande</option>
-        <option value="xl">Extra</option>
-      </select>        
-    </label>
-    <label> Ubicación:
-      <input #petLocation />    
-    </label>
-    <button></button>
+<div class="container">
+  <h1>Datos</h1>
+  <form (ngSubmit)="addPet(click)" #newPet="ngForm">
+    <div class="form-group">
+      <label for="species"> Especie:
+        <select class="form-control" id="species" [(ngModel)]="pet.species" name="species" required >
+          <option *ngFor="let specie of species" [value]="specie">{{specie}}</option>
+        </select>    
+      </label>
+    </div>
+    <div class="form-group">
+      <label for="breed"> Raza:
+          <input type="text" class="form-control" id="breed" [(ngModel)]="pet.breed" name="breed" required /> 
+      </label>
+    </div>
+    <div class="form-group">
+      <label for="name"> Nombre:   
+        <input type="text" class="form-control" id="name" [(ngModel)]="pet.name" name="name" required />    
+      </label>
+    </div>
+    <div class="form-group">
+      <label for="age"> Edad:
+        <input type="number" class="form-control" id="age" [(ngModel)]="pet.age" name="age" required />    
+      </label>      
+    </div>
+    <div class="form-group">
+      <label for="weight"> Peso:
+        <input type="number" class="form-control" id="weight" [(ngModel)]="pet.weight" name="weight" required />    
+      </label>
+    </div>
+    <div class="form-group">
+      <label for="size"> Tamaño:
+        <select class="form-control" id="size" [(ngModel)]="pet.size" name="size" required>
+          <option *ngFor="let size of sizes" [value]="size">{{size}}</option>
+        </select>        
+      </label>      
+    </div>
+    <div class="form-group">
+      <label for="location"> Ubicación:
+        <input type="text" class="form-control" id="location" [(ngModel)]="pet.location" name="location" required />    
+      </label>      
+    </div>
+    <button type="submit" class="btn btn-success" [disabled]="!newPet.form.valid" >Añadir Mascota</button>
   </form>
 </div>

@@ -30,12 +30,17 @@ export class OrgDetailComponent implements OnInit {
       .subscribe(org => this.org = org);
   }
 
-  goBack(): void {
-    this.location.back()
+  acceptAdoption(usrId, petId): void {
+    const orgId = this.route.snapshot.paramMap.get('_id');
+    this.petService.acceptAdoption(orgId, petId, usrId)
+      .subscribe(
+      data => console.log('data', data),
+      error => console.log('error', error)
+    );
   }
 
-  addPet(): void {
-    
+  goBack(): void {
+    this.location.back()
   }
 
 }

@@ -1,4 +1,10 @@
 <div *ngIf="org">
+  <li *ngFor="let query of org.queries">
+    <h3>{{query.user.name}}</h3>
+    <h3>quiere adoptar a {{query.pet.name}}</h3>
+    <button (click)="acceptAdoption(query.user._id, query.pet._id)" >Aceptar</button>
+    <button (click)="rejectAdoption(query.user._id, query.pet._id)">Rechazar</button>
+  </li>
   <h2>Detalles de {{ org.name | uppercase }}</h2>
   <div>
     <p>
@@ -13,4 +19,9 @@
   </div>
   <button routerLink="/orgs/{{org._id}}/pets">Nueva Mascota</button>
   <button (click)="goBack()">Atras</button>
+    <div class="pet-container">
+      <div *ngFor="let pet of org.pets">
+        <h4>{{pet.name}}</h4>
+      </div>
+    </div>
 </div>

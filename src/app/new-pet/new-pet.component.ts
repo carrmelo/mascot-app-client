@@ -22,19 +22,21 @@ export class NewPetComponent implements OnInit {
   
   species = ['Perro', 'Gato'];
 
-  sizes = ['Mini', 'Pequeño', 'Medio', 'Grande', 'Extra Grande'];
+  sizes = ['Mini', 'Pequeño', 'Mediano', 'Grande', 'Extra Grande'];
 
   pet = new Pet()
   // submitted = false;
 
   // onSubmit() { this.submitted = true; }
 
-  addPet() {
-    this.pet.organization = event.path.filter(i => i === document)[0].URL.split('/')[4]
+  addPet() {  
+    this.pet.organization = event.path.filter(o => o === document)[0].URL.split('/')[4]
     this.http.post('http://localhost:3000/pets', this.pet)
       .subscribe(res => {
         console.log('RES', res)
         let id = res['_id'];
+        console.log(id);
+        
         this.router.navigate(['/pets', id]);
       }, (err) => console.error(err));
   }

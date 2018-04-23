@@ -14,7 +14,8 @@ import { PetService } from './pet.service';
 import { AppRoutingModule } from './/app-routing.module';
 import { OrgsComponent } from './orgs/orgs.component';
 import { NewPetComponent } from './new-pet/new-pet.component';
-import { OrgDetailComponent } from './org-detail/org-detail.component'
+import { OrgDetailComponent } from './org-detail/org-detail.component';
+import { UserDetailComponent } from './user-detail/user-detail.component'
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { OrgDetailComponent } from './org-detail/org-detail.component'
     PetComponent,
     OrgsComponent,
     NewPetComponent,
-    OrgDetailComponent
+    OrgDetailComponent,
+    UserDetailComponent
   ],
   imports: [
     BrowserModule,

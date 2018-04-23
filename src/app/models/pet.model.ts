@@ -2,7 +2,6 @@
 export class Pet {
 
   constructor(
-    // public _id: string,
   public species: string = null,
   public breed: string = null,
   public name: string = null,
@@ -14,6 +13,7 @@ export class Pet {
   public available: boolean = true,
   public organization: string = null,
   public owner: string = null
+  // public _id: string = null
 
   ) { }
   // _id: string;

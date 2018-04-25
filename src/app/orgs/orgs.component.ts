@@ -6,7 +6,7 @@ import { Org } from '../models/org.model';
 @Component({
   selector: 'app-orgs',
   templateUrl: './orgs.component.html',
-  styleUrls: ['./orgs.component.css']
+  styleUrls: ['./orgs.component.scss']
 })
 export class OrgsComponent implements OnInit {
   orgs: Org[];

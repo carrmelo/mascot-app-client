@@ -8,7 +8,7 @@ import { Org } from '../models/org.model'
 @Component({
   selector: 'app-org-detail',
   templateUrl: './org-detail.component.html',
-  styleUrls: ['./org-detail.component.css']
+  styleUrls: ['./org-detail.component.scss']
 })
 export class OrgDetailComponent implements OnInit {
 
@@ -30,13 +30,24 @@ export class OrgDetailComponent implements OnInit {
       .subscribe(org => this.org = org);
   }
 
-  acceptAdoption(usrId, petId): void {
+  acceptAdoption(queryId, petId, usrId): void {
     const orgId = this.route.snapshot.paramMap.get('_id');
-    this.petService.acceptAdoption(orgId, petId, usrId)
+    this.petService.acceptAdoption(queryId, orgId, petId, usrId)
       .subscribe(
       data => console.log('data', data),
       error => console.log('error', error)
     );
+    this.getOrg()
+  }
+
+  rejectAdoption(queryId, petId, usrId): void {
+    const orgId = this.route.snapshot.paramMap.get('_id');
+    this.petService.rejectAdoption(queryId, orgId, petId, usrId)
+      .subscribe(
+      data => console.log('data', data),
+      error => console.log('error', error)
+    );
+    this.getOrg()
   }
 
   goBack(): void {

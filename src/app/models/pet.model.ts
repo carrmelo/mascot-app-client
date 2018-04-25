@@ -12,7 +12,8 @@ export class Pet {
   public adopted: boolean = false,
   public available: boolean = true,
   public organization: string = null,
-  public owner: string = null
+  public owner: string = null,
+  public image: string = 'http://res.cloudinary.com/carrmelo/image/upload/c_scale,w_300/a_0/v1524612529/IMG_3938.jpg'
   // public _id: string = null
 
   ) { }

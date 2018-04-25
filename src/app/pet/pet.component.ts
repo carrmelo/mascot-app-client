@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
+import { Router } from "@angular/router";
 
 import { PetService } from '../pet.service';
 import { Pet } from '../models/pet.model'
@@ -8,8 +9,9 @@ import { Pet } from '../models/pet.model'
 @Component({
   selector: 'app-pet',
   templateUrl: './pet.component.html',
-  styleUrls: ['./pet.component.css']
+  styleUrls: ['./pet.component.scss']
 })
+
 export class PetComponent implements OnInit {
 
   @Input() pet: Pet;
@@ -19,7 +21,7 @@ export class PetComponent implements OnInit {
     private petService: PetService,
     private location: Location
   ) { }
-
+  
   ngOnInit() {
     this.getPet();
   }
@@ -38,6 +40,7 @@ export class PetComponent implements OnInit {
         data => console.log('data', data),
         error => console.log('error', error)
       );
+    this.goBack();
     
     // const id = this.route.snapshot.paramMap.get('_id');    
     // this.petService.getPet(id)

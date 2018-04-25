@@ -1,19 +1,14 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/catch';
+import 'rxjs/add/observable/throw';
 import { ErrorObservable } from 'rxjs/observable/ErrorObservable';
-// import { of } from 'rxjs/observable/of';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
 
 import { Pet } from './models/pet.model';
 import { User } from './models/user.model';
 import { Org } from './models/org.model';
-
-// const httpOptions = {
-//   headers: new HttpHeaders({
-//     'Content-Type':  'application/json',
-//   })
-// };
 
 @Injectable()
 export class PetService {
@@ -22,52 +17,73 @@ export class PetService {
   
   constructor(private http: HttpClient) { }
   
+  private handleAngularJsonBug (error: HttpErrorResponse) {
+		const JsonParseError = 'Http failure during parsing for';
+		const matches = error.message.match(new RegExp(JsonParseError, 'ig'));
+
+		if (error.status === 200 && matches.length === 1) {
+			// return obs that completes;
+			return Observable.empty();
+		} else {
+			return Observable.throw(error);		// re-throw
+		}
+  }
+
   getPets(): Observable<Pet[]> {
     return this.http.get<Pet[]>(`${this.petUrl}/pets`)
+      .catch((error: HttpErrorResponse) => this.handleAngularJsonBug(error))
   }
 
   getPet(id: String): Observable<Pet> {
     const url = `${this.petUrl}/pets/${id}`;
-    return this.http.get<Pet>(url);
+    return this.http.get<Pet>(url)
+      .catch((error: HttpErrorResponse) => this.handleAngularJsonBug(error))
   }
 
   getOrgs(): Observable<Org[]> {
     return this.http.get<Org[]>(`${this.petUrl}/orgs`)
+      .catch((error: HttpErrorResponse) => this.handleAngularJsonBug(error))
   }
 
   getOrg(id: String): Observable<Org> {
     const url = `${this.petUrl}/orgs/${id}`
-    return this.http.get<Org>(url);
+    return this.http.get<Org>(url)
+      .catch((error: HttpErrorResponse) => this.handleAngularJsonBug(error))
   }
 
-  // private handleError(error: HttpErrorResponse) {
-  //   if (error.error instanceof ErrorEvent) {
-  //     // A client-side or network error occurred. Handle it accordingly.
-  //     console.error('An error occurred:', error.error.message);
-  //   } else {
-  //     // The backend returned an unsuccessful response code.
-  //     // The response body may contain clues as to what went wrong,
-  //     console.error(
-  //       `Backend returned code ${error.status}, ` +
-  //       `body was: ${error.error}`);
-  //   }
-  //   // return an ErrorObservable with a user-facing error message
-  //   return new ErrorObservable(
-  //     'Something bad happened; please try again later.');
-  // };
+  getUser(id: String): Observable<User> {
+    const url = `${this.petUrl}/users/${id}`
+    return this.http.get<User>(url)
+      .catch((error: HttpErrorResponse) => this.handleAngularJsonBug(error))
+  }
 
   adoptionRequest(org: String, pet: String, user: String): Observable<Org> {
     const url = `${this.petUrl}/orgs/${org}`;
     const adoptionReq = { org, pet, user };
-    return this.http.put<Org>(url, adoptionReq);
-      // .pipe(
-      //   catchError(this.handleError('a', org, {observe: 'response'}))
-      // )
+    return this.http.put<Org>(url, adoptionReq)
+      .catch((error: HttpErrorResponse) => this.handleAngularJsonBug(error))
   }
 
-  acceptAdoption(org: String, pet: String, user: String): Observable<User> {
-    const url = `${this.petUrl}/users/${user}`;
-    const approvalRes = { org, pet, user };
-    return this.http.put<User>(url, approvalRes);
+  acceptAdoption(query: String, org: String, pet: String, user: String): Observable<User> {
+    const url = `${this.petUrl}/users/${user}/accepted`;
+    const approvalRes = { org, pet, query };
+    return this.http.put<User>(url, approvalRes)
+      .catch((error: HttpErrorResponse) => this.handleAngularJsonBug(error))
+  }
+
+  rejectAdoption(query: String, org: String, pet: String, user: String): Observable<User> {
+    const url = `${this.petUrl}/users/${user}/rejected`;
+    const rejectionRes = { org, pet, query };
+    return this.http.put<User>(url, rejectionRes)
+      .catch((error: HttpErrorResponse) => this.handleAngularJsonBug(error))
+  }
+
+  markAsRead(_id, user): Observable<User> {
+
+    
+    const url = `${this.petUrl}/users/${user}/markAsRead`;
+    const message = { _id, read: true }
+    return this.http.put<User>(url, message)
+      .catch((error: HttpErrorResponse) => this.handleAngularJsonBug(error))
   }
 }

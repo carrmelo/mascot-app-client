@@ -1,22 +1,25 @@
 <div *ngIf="pet">
-  <h2>Detalles de {{ pet.name | uppercase }}</h2>
-  <div>
-    <p>
-      {{pet.breed}}
-    </p>
-    <p>
-      {{pet.age}} años
-    </p>
-    <p>
-      {{pet.weight}} Kg
-    </p>
-    <p>
-      {{pet.size}}
-    </p>
-    <p>
-      {{pet.location}}
-    </p>
+  <h1>{{ pet.name | uppercase }}</h1>
+  <div class="pet-container" class="card card-block card-header">
+    <div class="test-container">
+      <h5 class="breed">
+        {{pet.species}}
+      </h5>
+      <h6>
+        {{pet.age}} años
+      </h6>
+      <h6>
+        {{pet.weight}} Kg
+      </h6>
+      <h6>
+        {{pet.size}}
+      </h6>
+      <h6>
+        {{pet.location}}
+      </h6>
+    </div>
+    <img src={{pet.image}}>
   </div>
-  <button (click)="adoptionRequest(pet.organization._id)">Adoptar</button>
-  <button (click)="goBack()">go back</button>
+  <button (click)="adoptionRequest(pet.organization._id)" type="button" class="btn btn-primary">Adoptar</button>
+  <button (click)="goBack()" type="button" class="btn btn-primary">go back</button>
 </div>

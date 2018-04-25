@@ -1,0 +1,30 @@
+.each-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.card {
+  margin: 5px 5px;
+  justify-content: flex-end;
+}
+
+h3 {
+  margin: 10px;
+}
+
+// img {
+//   width: 60px;
+// }
+
+.image-container {
+  width: 100px;
+  overflow: hidden;
+  height: 150px;
+  background-color: rgb(183, 212, 255);
+}
+
+.image-container img {
+  width: 120px;
+
+  // margin: -10px 20px 0px 15px;
+}

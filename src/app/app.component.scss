@@ -1,0 +1,19 @@
+.title-container {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 25px;
+}
+
+.btn-group {
+  display: flex;
+  align-self: flex-end;
+}
+
+
+button {
+  font-size: 1.2em;
+}
+
+span {
+  font-size: 0.8em;
+}

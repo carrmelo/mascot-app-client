@@ -1,7 +1,24 @@
-<ul class="pets">
-  <li *ngFor="let pet of pets">
-    <a routerLink="/pets/{{pet._id}}">
-      <h1>{{pet.name}}</h1>
-    </a>
-  </li>
-</ul>
+<ng-container *ngIf="pets">
+  <div class="each-container">    
+    <div *ngFor="let pet of pets" class="card card-block card-header">
+      <div class="image-container">
+        <img src={{pet.image}}>
+      </div>
+      <button type="button" class="btn btn-primary"
+        routerLink="/pets/{{pet._id}}">{{pet.name}}
+      </button>
+    </div>
+  </div>
+</ng-container>
+
+<ng-container *ngIf="user">
+  <div *ngFor="let message of user.messages">
+    <alert [type]="message.alert" [dismissible]="dismissible" (onClosed)="markAsRead(message, user)">{{ message.message }}</alert>
+  </div>
+  <h3 *ngIf="user.pets > 0">Tus Mascotas</h3>
+  <div class="adopted">
+    <div *ngFor="let pet of user.pets" class="card card-block card-header">
+      <h3>{{pet.pet.name}}</h3>
+    </div>
+  </div>
+</ng-container>

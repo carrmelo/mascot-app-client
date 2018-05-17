@@ -3,10 +3,15 @@ import { NgModule } from '@angular/core';
 import { StoreModule } from '@ngrx/store';
 import { FormsModule } from '@angular/forms';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import {
+  HttpClient,
+  HttpClientModule,
+  HttpClientJsonpModule
+} from '@angular/common/http';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { CollapseModule } from 'ngx-bootstrap/collapse';
 import { AlertModule } from 'ngx-bootstrap/alert';
+import { ShareModule } from '@ngx-share/core';
 
 import { AppComponent } from './app.component';
 import { simpleReducer } from './reducers/simple.reducer';
@@ -21,7 +26,10 @@ import { OrgDetailComponent } from './org-detail/org-detail.component';
 import { UserDetailComponent } from './user-detail/user-detail.component'
 
 import { Cloudinary as CloudinaryCore } from 'cloudinary-core';
-import { CloudinaryConfiguration, CloudinaryModule } from '@cloudinary/angular-5.x';
+import {
+  CloudinaryConfiguration,
+  CloudinaryModule
+} from '@cloudinary/angular-5.x';
 import { Cloudinary } from '@cloudinary/angular-5.x/src/cloudinary.service';
 
 export const cloudinary = {
@@ -54,7 +62,9 @@ export const cloudinary = {
     AppRoutingModule,
     CloudinaryModule.forRoot(Cloudinary,
       { cloud_name: 'carrmelo', upload_preset: 'mypreset' }),
-    HttpClientModule
+    HttpClientModule,
+    HttpClientJsonpModule,
+    ShareModule.forRoot()
   ],
   providers: [PetService],
   bootstrap: [AppComponent]

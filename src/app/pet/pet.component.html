@@ -1,5 +1,5 @@
 <div *ngIf="pet">
-  <h1>{{ pet.name | uppercase }}</h1>
+  <h1 class="well button btn-primary">{{ pet.name | uppercase }}</h1>
   <div class="pet-container" class="card card-block card-header">
     <div class="test-container">
       <h5 class="breed">
@@ -17,8 +17,23 @@
       <h6>
         {{pet.location}}
       </h6>
+      <h6>
+        {{pet.organization.name}}
+      </h6>
     </div>
-    <img src={{pet.image}}>
+    <div class="social-container">
+      <img src={{pet.image}}>
+      <div>
+        <button shareButton="facebook">Facebook</button>
+        <button shareButton="twitter">Tweet</button>
+        <!-- <button mat-icon-button shareButton="facebook" #fbBtn [style.color]="share.prop.facebook.color">
+          <fa-icon [icon]="share.prop.facebook.icon" size="lg"></fa-icon>
+        </button>
+        <button mat-icon-button shareButton="twitter" #twtBtn [style.color]="share.prop.twitter.color">
+          <fa-icon [icon]="share.prop.twitter.icon" size="lg"></fa-icon>
+        </button> -->
+      </div>
+    </div>
   </div>
   <button (click)="adoptionRequest(pet.organization._id)" type="button" class="btn btn-primary">Adoptar</button>
   <button (click)="goBack()" type="button" class="btn btn-primary">go back</button>

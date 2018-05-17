@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { Router } from "@angular/router";
+import { ShareButtons } from '@ngx-share/core';
 
 import { PetService } from '../pet.service';
 import { Pet } from '../models/pet.model'
@@ -19,7 +20,8 @@ export class PetComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private petService: PetService,
-    private location: Location
+    private location: Location,
+    public share: ShareButtons
   ) { }
   
   ngOnInit() {

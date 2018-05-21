@@ -5,10 +5,9 @@ import { NgForm } from '@angular/forms';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/empty';
 import 'rxjs/add/observable/throw';
-import { Cloudinary } from '@cloudinary/angular-5.x';
 
 import { Pet } from '../models/pet.model'
-import { Param } from 'cloudinary-core';
+import { log } from 'util';
 
 @Component({
   selector: 'newPet',
@@ -18,11 +17,11 @@ import { Param } from 'cloudinary-core';
 })
 export class NewPetComponent implements OnInit {
 
-  // @Input() pet: Pet;
+  // @Input() orgId: string;
+
   private handleAngularJsonBug (error: HttpErrorResponse) {
 		const JsonParseError = 'Http failure during parsing for';
 		const matches = error.message.match(new RegExp(JsonParseError, 'ig'));
-
 		if (error.status === 200 && matches.length === 1) {
 			// return obs that completes;
 			return Observable.empty();
@@ -45,14 +44,12 @@ export class NewPetComponent implements OnInit {
 
   pet = new Pet()
 
-  addPet() {
+  addPet(x) {
+
     this.pet.organization = event.path.filter(o => o === document)[0].URL.split('/')[4]
     this.http.post('http://localhost:3000/pets', this.pet)
       .subscribe(res => {
-        console.log('RES', res)
         let id = res['_id'];
-        console.log(id);
-        
         this.router.navigate(['/pets', id]);
       }, (error: HttpErrorResponse) => this.handleAngularJsonBug(error));
   }

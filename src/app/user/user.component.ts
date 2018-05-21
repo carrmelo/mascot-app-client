@@ -35,10 +35,10 @@ export class UserComponent implements OnInit {
       .subscribe(pets => {
         this.pets = pets.filter(i => i.available !== false)
       });
-  }
+  } 
 
   getUser(): void {
-    const id = '5ad79a998aeb780c97d08189';
+    const id = '5b005cecd5de87305632855b';
     this.petService.getUser(id)
       .subscribe(user => this.user = user)
   }

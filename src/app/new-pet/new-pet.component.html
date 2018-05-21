@@ -1,6 +1,6 @@
 <div class="container">
   <h1>Datos</h1>
-  <form (ngSubmit)="addPet(this)" #newPet="ngForm">
+  <form (ngSubmit)="addPet()" #newPet="ngForm">
     <div class="form-group">
       <label for="species"> Especie:
         <select class="form-control" id="species" [(ngModel)]="pet.species" name="species" required >

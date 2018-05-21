@@ -1,8 +1,9 @@
 import { Component, OnInit, Input, ViewEncapsulation } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { NgForm } from '@angular/forms';
 import { Observable } from 'rxjs/Observable';
+
 import 'rxjs/add/observable/empty';
 import 'rxjs/add/observable/throw';
 
@@ -17,7 +18,7 @@ import { log } from 'util';
 })
 export class NewPetComponent implements OnInit {
 
-  // @Input() orgId: string;
+  orgId: string;
 
   private handleAngularJsonBug (error: HttpErrorResponse) {
 		const JsonParseError = 'Http failure during parsing for';
@@ -32,10 +33,14 @@ export class NewPetComponent implements OnInit {
   
   constructor(
     private http: HttpClient,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute
   ) { }
 
   ngOnInit() {
+    this.route.params.subscribe(params => {
+      this.orgId = params['_id']
+    });
   }
   
   species = ['Perro', 'Gato'];
@@ -44,9 +49,8 @@ export class NewPetComponent implements OnInit {
 
   pet = new Pet()
 
-  addPet(x) {
-
-    this.pet.organization = event.path.filter(o => o === document)[0].URL.split('/')[4]
+  addPet() {    
+    this.pet.organization = this.orgId
     this.http.post('http://localhost:3000/pets', this.pet)
       .subscribe(res => {
         let id = res['_id'];

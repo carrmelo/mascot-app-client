@@ -1,12 +1,48 @@
 <ng-container *ngIf="pets">
   <div class="each-container">    
     <div *ngFor="let pet of pets" class="card card-block card-header">
-      <div class="image-container">
-        <img src={{pet.image}}>
+      <div class="card_img_text_container">
+        <div class="image-container">
+          <img src={{pet.image}}>
+        </div>
+        <div class="test-container">
+          <h4>{{pet.name}}</h4>
+          <h5 class="breed">
+            {{pet.breed}}
+          </h5>
+          <h6>
+            {{pet.age}} años
+          </h6>
+          <h6>
+            {{pet.weight}} Kg
+          </h6>
+          <h6>
+            {{pet.size}}
+          </h6>
+          <h6>
+            {{pet.location}}
+          </h6>
+        </div>
       </div>
       <button type="button" class="btn btn-primary"
         routerLink="/pets/{{pet._id}}">{{pet.name}}
       </button>
+      <!-- <div class="container-adoption-button">
+        <button 
+          (click)="adoptionRequest(pet.organization._id)" 
+          type="button" 
+          class="btn btn-primary"
+        >
+          Adoptar
+        </button>
+        <button 
+          (click)="tempResidencyRequest(pet.organization._id)" 
+          type="button" 
+          class="btn btn-primary"
+        >
+          Acoger
+        </button>
+      </div> -->
     </div>
   </div>
 </ng-container>

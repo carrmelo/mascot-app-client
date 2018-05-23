@@ -1,7 +1,8 @@
 .title-container {
   display: flex;
   justify-content: space-between;
-  margin: 10px 25px;
+  padding: 25px 50px 25px;
+  background-color: rgb(212, 255, 255);
 }
 
 .btn-group {
@@ -16,4 +17,10 @@ button {
 
 span {
   font-size: 0.8em;
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: #00BCD4;
+  border-color: #00BCD4;
 }

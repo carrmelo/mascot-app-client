@@ -6,6 +6,7 @@
 .card {
   margin: 5px 5px;
   justify-content: flex-end;
+  width: 220px;
 }
 
 h3 {
@@ -21,10 +22,25 @@ h3 {
   overflow: hidden;
   height: 150px;
   background-color: rgb(183, 212, 255);
+  margin: 5px;
 }
 
 .image-container img {
   width: 120px;
 
   // margin: -10px 20px 0px 15px;
+}
+
+.card_img_text_container {
+  display: flex;
+}
+
+.test-container {
+  margin: 10px;
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: #00BCD4;
+  border-color: #00BCD4;
 }

@@ -29,6 +29,11 @@ export class PetService {
 		}
   }
 
+  addPet(Pet: {}): Observable<Pet> {    
+    return this.http.post<Pet>(`${this.petUrl}/pets`, Pet)
+      .catch((error: HttpErrorResponse) => this.handleAngularJsonBug(error));
+  }
+
   getPets(): Observable<Pet[]> {
     return this.http.get<Pet[]>(`${this.petUrl}/pets`)
       .catch((error: HttpErrorResponse) => this.handleAngularJsonBug(error))

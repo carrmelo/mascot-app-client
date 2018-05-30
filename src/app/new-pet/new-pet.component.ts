@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, ViewEncapsulation } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { PetService } from '../pet.service';
 import { NgForm } from '@angular/forms';
 import { Observable } from 'rxjs/Observable';
 
@@ -19,22 +20,11 @@ import { log } from 'util';
 export class NewPetComponent implements OnInit {
 
   orgId: string;
-
-  private handleAngularJsonBug (error: HttpErrorResponse) {
-		const JsonParseError = 'Http failure during parsing for';
-		const matches = error.message.match(new RegExp(JsonParseError, 'ig'));
-		if (error.status === 200 && matches.length === 1) {
-			// return obs that completes;
-			return Observable.empty();
-		} else {
-			return Observable.throw(error);		// re-throw
-		}
-  }
   
   constructor(
-    private http: HttpClient,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private petService: PetService
   ) { }
 
   ngOnInit() {
@@ -51,11 +41,11 @@ export class NewPetComponent implements OnInit {
 
   addPet() {    
     this.pet.organization = this.orgId
-    this.http.post('http://localhost:3000/pets', this.pet)
+    this.petService.addPet(this.pet)
       .subscribe(res => {
         let id = res['_id'];
         this.router.navigate(['/pets', id]);
-      }, (error: HttpErrorResponse) => this.handleAngularJsonBug(error));
+      });
   }
 
 }
